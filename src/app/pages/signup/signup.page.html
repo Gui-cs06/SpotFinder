@@ -1,0 +1,152 @@
+<ion-content fullscreen>
+
+  <div class="signup-page">
+
+
+    <div class="top-section">
+
+      <div class="logo-circle">
+        <ion-icon name="location-outline"></ion-icon>
+      </div>
+
+      <h1>Descobrir Lugares</h1>
+
+      <p>Crie sua conta para explorar</p>
+
+    </div>
+
+
+    <div class="form-container">
+
+      <h2>Cadastrar</h2>
+
+      <form [formGroup]="signupForm" (ngSubmit)="signUp()">
+
+
+        <div class="input-group">
+
+          <label>Nome Completo</label>
+
+          <div class="custom-input" [class.valid]="signupForm.get('name')?.valid && signupForm.get('name')?.touched"
+            [class.invalid]="signupForm.get('name')?.invalid && signupForm.get('name')?.touched">
+
+            <ion-icon name="person-outline"></ion-icon>
+
+            <ion-input type="text" placeholder="Seu nome" formControlName="name">
+            </ion-input>
+
+          </div>
+
+        </div>
+
+
+        <div class="input-group">
+
+          <label>E-mail</label>
+
+          <div class="custom-input" [class.valid]="signupForm.get('email')?.valid && signupForm.get('email')?.touched"
+            [class.invalid]="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+
+            <ion-icon name="mail-outline"></ion-icon>
+
+            <ion-input type="email" placeholder="seu@email.com" formControlName="email">
+            </ion-input>
+
+          </div>
+
+        </div>
+
+
+        <div class="input-group">
+
+          <label>Senha</label>
+
+          <div class="custom-input"
+            [class.valid]="signupForm.get('password')?.valid && signupForm.get('password')?.touched"
+            [class.invalid]="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+
+            <ion-icon name="lock-closed-outline"></ion-icon>
+
+            <ion-input [type]="showPassword() ? 'text' : 'password'" placeholder="••••••••" formControlName="password">
+            </ion-input>
+
+            <button type="button" class="eye-button" (click)="togglePassword()">
+
+              <ion-icon [name]="showPassword()
+                ? 'eye-off-outline'
+                : 'eye-outline'">
+              </ion-icon>
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="input-group">
+
+          <label>Confirmar Senha</label>
+
+          <div class="custom-input"
+            [class.valid]="signupForm.get('confirmPassword')?.valid && signupForm.get('confirmPassword')?.touched"
+            [class.invalid]="signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched">
+
+            <ion-icon name="lock-closed-outline"></ion-icon>
+
+            <ion-input [type]="showConfirmPassword() ? 'text' : 'password'" placeholder="••••••••"
+              formControlName="confirmPassword">
+            </ion-input>
+
+            <button type="button" class="eye-button" (click)="toggleConfirmPassword()">
+
+              <ion-icon [name]="showConfirmPassword()
+                ? 'eye-off-outline'
+                : 'eye-outline'">
+              </ion-icon>
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="terms-container">
+
+          <ion-checkbox formControlName="terms"></ion-checkbox>
+
+          <p>
+            Eu concordo com os
+            <span>Termos de Uso</span>
+            e
+            <span>Política de Privacidade</span>
+          </p>
+
+        </div>
+
+
+        <ion-button expand="block" type="submit" class="signup-button">
+
+          Criar Conta
+
+        </ion-button>
+
+      </form>
+
+
+      <div class="login-link">
+
+        Já possui uma conta?
+
+        <a routerLink="/login">
+          Entrar
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>

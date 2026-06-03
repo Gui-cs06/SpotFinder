@@ -1,0 +1,99 @@
+<ion-content fullscreen>
+
+  <div class="login-page">
+
+
+    <div class="top-section">
+
+      <div class="logo-circle">
+        <ion-icon name="location-outline"></ion-icon>
+      </div>
+
+      <h1>Descobrir Lugares</h1>
+
+      <p>Entre para explorar lugares próximos</p>
+
+    </div>
+
+
+    <div class="form-container">
+
+      <h2>Entrar</h2>
+
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+
+        <div class="input-group">
+
+          <label>E-mail</label>
+
+          <div class="custom-input">
+
+            <ion-icon name="mail-outline"></ion-icon>
+
+            <ion-input type="email" placeholder="seu@email.com" formControlName="email">
+            </ion-input>
+
+          </div>
+
+        </div>
+
+
+        <div class="input-group">
+
+          <label>Senha</label>
+
+          <div class="custom-input">
+
+            <ion-icon name="lock-closed-outline"></ion-icon>
+
+            <ion-input [type]="showPassword() ? 'text' : 'password'" placeholder="••••••••" formControlName="password">
+            </ion-input>
+
+            <button type="button" class="eye-button" (click)="togglePassword()">
+
+              <ion-icon [name]="showPassword()
+                ? 'eye-off-outline'
+                : 'eye-outline'">
+              </ion-icon>
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="forgot-password">
+
+          <a>
+            Esqueceu a senha?
+          </a>
+
+        </div>
+
+
+        <ion-button expand="block" type="submit" class="login-button">
+
+          Entrar
+
+        </ion-button>
+
+      </form>
+
+
+      <div class="signup-link">
+
+        Não possui uma conta?
+
+        <a routerLink="/signup">
+          Cadastre-se
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>

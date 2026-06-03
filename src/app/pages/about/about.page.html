@@ -1,0 +1,78 @@
+<ion-content fullscreen>
+  <div class="about-page">
+    <div class="top-section">
+      <button class="back-button" (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </button>
+
+      <div class="header-content">
+        <div class="logo-circle">
+          <ion-icon name="code-slash-outline"></ion-icon>
+        </div>
+
+        <div>
+          <h1>Sobre o App</h1>
+
+          <p>Conheça nossa equipe</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <div class="info-card">
+        <h2>SpotFinder</h2>
+
+        <p>
+          Um aplicativo criado para ajudar usuários a encontrar lugares próximos
+          de forma rápida e intuitiva.
+        </p>
+      </div>
+
+      <div class="section-title">Nossa Equipe</div>
+
+      @for (developer of developers; track developer) {
+        <div class="developer-card">
+          <div class="developer-header">
+            <div class="avatar">{{ developer.avatar }}</div>
+            <div class="developer-info">
+              <h3>{{ developer.name }}</h3>
+              <span class="role"> {{ developer.role }} </span>
+              <p>{{ developer.description }}</p>
+            </div>
+          </div>
+          <div class="social-buttons">
+            <a [href]="developer.github" target="_blank">
+              <ion-icon name="logo-github"></ion-icon>
+              GitHub
+            </a>
+            <a [href]="developer.linkedin" target="_blank">
+              <ion-icon name="logo-linkedin"></ion-icon>
+              LinkedIn
+            </a>
+            <a [href]="developer.email">
+              <ion-icon name="mail-outline"></ion-icon>
+              E-mail
+            </a>
+          </div>
+        </div>
+      }
+
+      <div class="section-title">Tecnologias Utilizadas</div>
+
+      <div class="tech-grid">
+        @for (tech of technologies; track tech) {
+          <div class="tech-card">
+            <h3>{{ tech.name }}</h3>
+            <p>{{ tech.type }}</p>
+          </div>
+        }
+      </div>
+
+      <div class="footer">
+        <p>Versão 1.0.0</p>
+
+        <span> © 2026 SpotFinder </span>
+      </div>
+    </div>
+  </div>
+</ion-content>

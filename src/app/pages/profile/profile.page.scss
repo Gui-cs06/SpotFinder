@@ -1,0 +1,216 @@
+.profile-page {
+  min-height: 100vh;
+
+  background: #f9fafb;
+}
+
+.top-section {
+
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #1d4ed8
+  );
+
+  padding:
+    70px
+    24px
+    40px;
+
+  color: white;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+
+  margin-bottom: 32px;
+}
+
+.profile-image {
+
+  width: 84px;
+  height: 84px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ion-icon {
+    font-size: 42px;
+    color: #2563eb;
+  }
+}
+
+.user-info h1 {
+  font-size: 28px;
+  font-weight: 700;
+
+  margin-bottom: 4px;
+}
+
+.user-info p {
+  color: #dbeafe;
+  font-size: 14px;
+}
+
+.stats-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 12px;
+}
+
+.stat-card {
+
+  background: rgba(255,255,255,0.18);
+
+  backdrop-filter: blur(10px);
+
+  border-radius: 18px;
+
+  padding: 16px 10px;
+
+  text-align: center;
+}
+
+.stat-card ion-icon {
+  font-size: 22px;
+
+  margin-bottom: 8px;
+}
+
+.stat-card h2 {
+  font-size: 24px;
+  font-weight: 700;
+
+  margin-bottom: 4px;
+}
+
+.stat-card p {
+  font-size: 12px;
+  color: #dbeafe;
+}
+
+.content-section {
+
+  margin-top: -16px;
+
+  background: white;
+
+  border-radius: 28px 28px 0 0;
+
+  padding: 24px 24px 120px 24px;
+}
+
+.menu-container {
+
+  background: white;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 22px;
+
+  overflow: hidden;
+
+  margin-bottom: 18px;
+}
+
+.menu-container.small {
+  margin-top: 10px;
+}
+
+.menu-item-link {
+  text-decoration: none;
+}
+
+.menu-item {
+
+  width: 100%;
+
+  background: white;
+
+  border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 18px 16px;
+
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-left {
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+}
+
+.menu-icon {
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  background: #f3f4f6;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-icon ion-icon {
+  font-size: 20px;
+  color: #374151;
+}
+
+.menu-item span {
+
+  font-size: 15px;
+  font-weight: 600;
+
+  color: #111827;
+}
+
+.menu-item ion-icon:last-child {
+  color: #9ca3af;
+}
+
+.logout span {
+  color: #dc2626;
+}
+
+.logout-icon {
+  background: #fee2e2;
+}
+
+.logout-icon ion-icon {
+  color: #dc2626;
+}
+
+.version {
+
+  text-align: center;
+
+  margin-top: 30px;
+
+  color: #9ca3af;
+
+  font-size: 14px;
+}

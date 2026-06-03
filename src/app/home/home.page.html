@@ -1,0 +1,126 @@
+<ion-content fullscreen>
+
+  <div class="home-page">
+
+
+    <div class="top-section">
+
+      <div class="location">
+
+        <p>
+          Localização Atual
+        </p>
+
+        <div class="location-row">
+
+          <ion-icon name="location-outline"></ion-icon>
+
+          <h1>
+            {{ currentCity }}
+          </h1>
+
+        </div>
+
+      </div>
+
+
+      <div class="search-bar">
+
+        <ion-icon name="search-outline">
+        </ion-icon>
+
+        <ion-input placeholder="Buscar lugares...">
+        </ion-input>
+
+        <button class="filter-button">
+
+          <ion-icon name="options-outline">
+          </ion-icon>
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="categories">
+
+      @for (category of categories; track category) {
+        <button (click)="selectCategory(category)"
+          [class.active]="selectedCategory() === category">
+          {{ category }}
+        </button>
+      }
+
+    </div>
+
+
+    <div class="places-section">
+
+      <div class="places-header">
+
+        <h2>
+          Lugares Próximos
+        </h2>
+
+        <span>
+          @if (isLoading) {
+            Carregando...
+          } @else {
+            {{ filteredPlaces.length }} encontrados
+          }
+        </span>
+
+      </div>
+
+
+      @for (place of filteredPlaces; track place) {
+        <div class="place-card">
+          <div class="image-container">
+            <img [src]="place.image">
+            <button class="favorite-button" (click)="toggleFavorite(place.id)">
+              <ion-icon [name]="place.favorite ? 'heart' : 'heart-outline'">
+              </ion-icon>
+            </button>
+            <div class="category-badge">
+              {{ place.category }}
+            </div>
+          </div>
+          <div class="place-info">
+            <h3>
+              {{ place.name }}
+            </h3>
+            <div class="info-row">
+              <div class="rating">
+                <ion-icon name="star"></ion-icon>
+                <span>
+                  {{ place.rating }}
+                </span>
+                <small>
+                  ({{ place.reviews }})
+                </small>
+              </div>
+              <div class="distance">
+                <ion-icon name="location-outline"></ion-icon>
+                <span>
+                  {{ place.distance }}
+                </span>
+              </div>
+            </div>
+            <div class="open-time">
+              <ion-icon name="time-outline"></ion-icon>
+              <span>
+                Aberto até {{ place.openUntil }}
+              </span>
+            </div>
+          </div>
+        </div>
+      }
+
+    </div>
+
+  </div>
+
+  <app-bottom-nav></app-bottom-nav>
+</ion-content>

@@ -1,0 +1,92 @@
+<ion-content fullscreen>
+  <div class="profile-page">
+    <div class="top-section">
+      <div class="user-info">
+        <div class="profile-image">
+          <ion-icon name="person-outline"></ion-icon>
+        </div>
+
+        <div>
+          @if (user()) {
+            <h1>{{ user()?.name }}</h1>
+            <p>{{ user()?.email }}</p>
+          } @else {
+            <h1>Carregando...</h1>
+            <p>Carregando...</p>
+          }
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        @for (stat of stats; track stat) {
+          <div class="stat-card">
+            <ion-icon [name]="stat.icon"></ion-icon>
+            <h2>{{ stat.value }}</h2>
+            <p>{{ stat.label }}</p>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="content-section">
+      <div class="menu-container">
+        @for (item of menuItems; track item) {
+          <button class="menu-item">
+            <div class="menu-left">
+              <div class="menu-icon">
+                <ion-icon [name]="item.icon"></ion-icon>
+              </div>
+              <span> {{ item.label }} </span>
+            </div>
+            <ion-icon name="chevron-forward-outline"> </ion-icon>
+          </button>
+        }
+      </div>
+
+      <div class="menu-container small">
+        <a href="/profile-update" class="menu-item-link">
+          <button class="menu-item">
+            <div class="menu-left">
+              <div class="menu-icon">
+                <ion-icon name="person-outline"></ion-icon>
+              </div>
+
+              <span> Editar Perfil </span>
+            </div>
+
+            <ion-icon name="chevron-forward-outline"> </ion-icon>
+          </button>
+        </a>
+        <a href="/about" class="menu-item-link">
+          <button class="menu-item">
+            <div class="menu-left">
+              <div class="menu-icon">
+                <ion-icon name="information-circle-outline"></ion-icon>
+              </div>
+
+              <span> Sobre o App </span>
+            </div>
+
+            <ion-icon name="chevron-forward-outline"> </ion-icon>
+          </button>
+        </a>
+
+        <button class="menu-item logout" (click)="logout()">
+          <div class="menu-left">
+            <div class="menu-icon logout-icon">
+              <ion-icon name="log-out-outline"></ion-icon>
+            </div>
+
+            <span> Sair </span>
+          </div>
+
+          <ion-icon name="chevron-forward-outline"> </ion-icon>
+        </button>
+      </div>
+
+      <div class="version">Versão 1.0.0</div>
+    </div>
+  </div>
+
+  <app-bottom-nav></app-bottom-nav>
+</ion-content>

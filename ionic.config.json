@@ -1,0 +1,7 @@
+{
+  "name": "SpotFinder",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

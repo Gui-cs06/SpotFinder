@@ -1,0 +1,7 @@
+{
+  "name": "SpotFinderVolume3",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

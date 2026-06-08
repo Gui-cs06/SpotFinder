@@ -1,0 +1,254 @@
+<ion-content fullscreen>
+
+  <!-- Hero Image -->
+  <div class="hero">
+
+    <img
+      [src]="place?.image"
+      [alt]="place?.name">
+
+    <div class="top-actions">
+
+      <button
+        class="circle-btn"
+        (click)="goBack()">
+
+        <ion-icon name="arrow-back-outline"></ion-icon>
+
+      </button>
+
+      <div class="right-buttons">
+
+        <button class="circle-btn">
+
+          <ion-icon name="share-social-outline"></ion-icon>
+
+        </button>
+
+        <button class="circle-btn">
+
+          <ion-icon name="heart-outline"></ion-icon>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Conteúdo -->
+  <div class="content">
+
+    <!-- Nome -->
+    <h1 class="place-title">
+
+      {{ place?.name }}
+
+    </h1>
+
+    <!-- Categoria -->
+    <div class="badge">
+
+      {{ place?.category }}
+
+    </div>
+
+    <!-- Avaliação -->
+    <div class="rating">
+
+      <ion-icon
+        name="star">
+      </ion-icon>
+
+      <span class="score">
+
+        {{ place?.rating || '4.5' }}
+
+      </span>
+
+      <span class="reviews">
+
+        ({{ place?.reviewCount || 0 }} avaliações)
+
+      </span>
+
+    </div>
+
+    <!-- Cards -->
+    <div class="info-grid">
+
+      <div class="info-card">
+
+        <h3>Distância</h3>
+
+        <p>
+
+          {{ place?.distance }}
+
+        </p>
+
+      </div>
+
+      <div class="info-card">
+
+        <h3>Aberto até</h3>
+
+        <p>
+
+          {{ place?.openUntil || '22:00' }}
+
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- Sobre -->
+    <div class="section">
+
+      <h2>Sobre</h2>
+
+      <p>
+
+        {{ place?.description || 'Nenhuma descrição disponível para este local.' }}
+
+      </p>
+
+    </div>
+
+    <!-- Localização -->
+    <div class="section">
+
+      <h2>Localização</h2>
+
+      <div class="location-card">
+
+        <p>
+
+          {{ place?.address || 'Endereço não informado' }}
+
+        </p>
+
+        <button
+          (click)="openDirections()">
+
+          Ver direções
+
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Contato -->
+    <div class="section">
+
+      <h2>Contato</h2>
+
+      <div class="contact-card">
+
+        <p>
+
+          {{ place?.phone || 'Telefone não informado' }}
+
+        </p>
+
+        <button
+          (click)="callPlace()">
+
+          Ligar agora
+
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Avaliações -->
+    <div class="section">
+
+      <h2>Avaliações</h2>
+
+      <div
+        class="review-card"
+        *ngFor="let review of reviews">
+
+        <div class="review-header">
+
+          <div class="user">
+
+            <div class="avatar">
+
+              {{ review.name.charAt(0) }}
+
+            </div>
+
+            <div>
+
+              <div class="user-name">
+
+                {{ review.name }}
+
+              </div>
+
+              <div class="user-date">
+
+                {{ review.date }}
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="review-score">
+
+            <ion-icon
+              name="star">
+            </ion-icon>
+
+            {{ review.rating }}
+
+          </div>
+
+        </div>
+
+        <p>
+
+          {{ review.text }}
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>
+
+<!-- Botões fixos -->
+<div class="bottom-actions">
+
+  <button
+    class="primary-btn"
+    (click)="openDirections()">
+
+    <ion-icon name="navigate-outline"></ion-icon>
+
+    Direções
+
+  </button>
+
+  <button
+    class="secondary-btn"
+    (click)="callPlace()">
+
+    <ion-icon name="call-outline"></ion-icon>
+
+    Ligar
+
+  </button>
+
+</div>

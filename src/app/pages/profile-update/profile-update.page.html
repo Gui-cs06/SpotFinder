@@ -1,0 +1,79 @@
+<ion-content fullscreen>
+
+  <div class="updateProfile-page">
+
+
+    <div class="top-section">
+
+      <div class="logo-circle">
+        <ion-icon name="location-outline"></ion-icon>
+      </div>
+
+      <h1>Descobrir Lugares</h1>
+
+      <p>Crie sua conta para explorar</p>
+
+    </div>
+
+
+    <div class="form-container">
+
+      <h2>Editar Perfil</h2>
+
+      <form [formGroup]="updateProfileForm" (ngSubmit)="updateProfile()">
+
+
+        <div class="input-group">
+
+          <label>Nome Completo</label>
+
+          <div class="custom-input" [class.valid]="updateProfileForm.get('name')?.valid && updateProfileForm.get('name')?.touched"
+            [class.invalid]="updateProfileForm.get('name')?.invalid && updateProfileForm.get('name')?.touched">
+
+            <ion-icon name="person-outline"></ion-icon>
+
+            <ion-input type="text" placeholder="Seu nome" formControlName="name">
+            </ion-input>
+
+          </div>
+
+        </div>
+
+
+        <div class="input-group">
+
+          <label>E-mail</label>
+
+          <div class="custom-input" [class.valid]="updateProfileForm.get('email')?.valid && updateProfileForm.get('email')?.touched"
+            [class.invalid]="updateProfileForm.get('email')?.invalid && updateProfileForm.get('email')?.touched">
+
+            <ion-icon name="mail-outline"></ion-icon>
+
+            <ion-input type="email" placeholder="seu@email.com" formControlName="email">
+            </ion-input>
+
+          </div>
+
+        </div>
+
+        <div class="forgot-password">
+
+          <a href="/reset-password" style="text-decoration: none;">
+            Alterar senha
+          </a>
+
+        </div>
+
+        <ion-button expand="block" type="submit" class="updateProfile-button">
+
+          Salvar
+
+        </ion-button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</ion-content>

@@ -1,0 +1,96 @@
+<ion-content fullscreen>
+
+  <div class="map-page">
+
+    <!-- Header -->
+    <div class="header">
+
+      <div class="header-row">
+
+        <div class="search-bar">
+
+          <ion-icon name="search-outline"></ion-icon>
+
+          <ion-input
+            placeholder="Buscar no mapa...">
+          </ion-input>
+
+        </div>
+
+        <button class="list-btn">
+
+          <ion-icon name="list-outline"></ion-icon>
+
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Mapa -->
+    <div id="map"></div>
+
+    <!-- Botão localização -->
+    <button
+      class="location-btn"
+      (click)="goToMyLocation()">
+
+      <ion-icon name="navigate-outline"></ion-icon>
+
+    </button>
+
+    <!-- Buscar nesta área -->
+    <button
+      class="search-area-btn"
+      (click)="searchThisArea()">
+
+      Buscar nesta área
+
+    </button>
+
+    <!-- Bottom Sheet -->
+    <div class="places-sheet">
+
+      <div class="sheet-header">
+
+        <h2>
+          {{ places.length }} lugares próximos
+        </h2>
+
+        <button>
+          Ver todos
+        </button>
+
+      </div>
+
+      <div class="places-list">
+
+       @for(place of places; track $index) {
+
+          <div class="place-card" (click)="openPlace(place)">
+
+            <img
+              [src]="place.image"
+              [alt]="place.name">
+
+            <h3>
+              {{ place.name }}
+            </h3>
+
+            <p>
+              {{ place.distance }}
+            </p>
+
+          </div>
+
+        }
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <app-bottom-nav></app-bottom-nav>
+
+</ion-content>

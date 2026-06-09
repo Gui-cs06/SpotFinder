@@ -76,6 +76,7 @@ export class PlaceDetailPage {
 
     this.place = history.state.place;
 
+    // console.log('Place recebido:', this.place);
 
   }
 
@@ -89,10 +90,10 @@ export class PlaceDetailPage {
             this.place.id
           );
 
-      console.log(
-        'É favorito?',
-        this.isFavorite
-      );
+      // console.log(
+      //   'É favorito?',
+      //   this.isFavorite
+      // );
 
       this.cdr.detectChanges();
 

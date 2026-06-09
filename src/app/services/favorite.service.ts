@@ -54,7 +54,7 @@ export class FavoriteService {
         }
       );
 
-      console.log('FAVORITO SALVO');
+      // console.log('FAVORITO SALVO');
 
     } catch (error) {
 
@@ -125,6 +125,8 @@ export class FavoriteService {
     const userId =
       this.authService.getLoggedUserId();
 
+    // console.log('USER ID:', userId);
+
     if (!userId) {
       return [];
     }
@@ -141,6 +143,11 @@ export class FavoriteService {
       await getDocs(
         favoritesRef
       );
+
+    // console.log(
+    //   'DOCS ENCONTRADOS:',
+    //   snapshot.docs.length
+    // );
 
     return snapshot.docs.map(
       doc => ({

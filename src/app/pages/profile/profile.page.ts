@@ -1,6 +1,8 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, ChangeDetectorRef } from '@angular/core';
 
 import { BottomNavComponent } from '../../components/bottom-nav/bottom-nav.component';
+
+import { FavoriteService } from '../../services/favorite.service';
 
 import {
   IonContent,
@@ -43,17 +45,17 @@ export class ProfilePage implements OnInit {
   stats = [
     {
       label: 'Lugares Visitados',
-      value: 24,
+      value: 0,
       icon: 'location-outline'
     },
     {
       label: 'Avaliações',
-      value: 12,
+      value: 0,
       icon: 'star-outline'
     },
     {
       label: 'Favoritos',
-      value: 8,
+      value: '---',
       icon: 'heart-outline'
     }
   ];
@@ -83,7 +85,9 @@ export class ProfilePage implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private favoriteService: FavoriteService,
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {
 
     addIcons({
@@ -100,13 +104,41 @@ export class ProfilePage implements OnInit {
 
   }
 
-async ngOnInit() {
-  const loggedUser = await this.authService.getLoggedUser();
+  async ngOnInit() {
 
-  this.user.set(loggedUser);
+    const loggedUser =
+      await this.authService.getLoggedUser();
 
-  console.log(this.user());
-}
+    this.user.set(loggedUser);
+
+    const favorites =
+      await this.favoriteService.getFavorites();
+
+    console.log('Favoritos:', favorites.length);
+
+    this.stats[2].value =
+      favorites.length;
+
+    console.log('Stats:', this.stats);
+
+  }
+
+  async ionViewWillEnter() {
+
+    const loggedUser =
+      await this.authService.getLoggedUser();
+
+    this.user.set(loggedUser);
+
+    const favorites =
+      await this.favoriteService.getFavorites();
+
+    this.stats[2].value =
+      favorites.length;
+
+    this.cdr.detectChanges();
+
+  }
 
   logout() {
 

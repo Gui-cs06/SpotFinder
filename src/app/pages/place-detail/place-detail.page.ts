@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FavoriteService } from '../../services/favorite.service';
 
 import { addIcons } from 'ionicons';
 
@@ -8,15 +9,17 @@ import {
   arrowBackOutline,
   shareSocialOutline,
   heartOutline,
+  heart,
   star,
   navigateOutline,
-  callOutline
+  callOutline,
 } from 'ionicons/icons';
 
 import {
   IonContent,
-  IonIcon
+  IonIcon,
 } from '@ionic/angular/standalone';
+
 
 @Component({
   selector: 'app-place-detail',
@@ -27,12 +30,13 @@ import {
     IonContent,
     IonIcon,
     CommonModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class PlaceDetailPage {
 
   place: any;
+  isFavorite = false;
 
   reviews = [
     {
@@ -55,12 +59,16 @@ export class PlaceDetailPage {
     }
   ];
 
-  constructor() {
+  constructor(
+    private favoriteService: FavoriteService,
+    private cdr: ChangeDetectorRef
+  ) {
 
     addIcons({
       arrowBackOutline,
       shareSocialOutline,
       heartOutline,
+      heart,
       star,
       navigateOutline,
       callOutline
@@ -68,7 +76,27 @@ export class PlaceDetailPage {
 
     this.place = history.state.place;
 
-    console.log('Place recebido:', this.place);
+
+  }
+
+  async ngOnInit() {
+
+    if (this.place?.id) {
+
+      this.isFavorite =
+        await this.favoriteService
+          .isFavorite(
+            this.place.id
+          );
+
+      console.log(
+        'É favorito?',
+        this.isFavorite
+      );
+
+      this.cdr.detectChanges();
+
+    }
 
   }
 
@@ -118,9 +146,27 @@ export class PlaceDetailPage {
 
   }
 
-  toggleFavorite() {
+  async toggleFavorite() {
 
-    console.log('Favoritar local');
+    if (!this.place?.id) {
+      return;
+    }
+
+    if (this.isFavorite) {
+
+      await this.favoriteService
+        .removeFavorite(this.place.id);
+
+    } else {
+
+      await this.favoriteService
+        .addFavorite(this.place);
+
+    }
+
+    this.isFavorite = !this.isFavorite;
+
+    this.cdr.detectChanges();
 
   }
 

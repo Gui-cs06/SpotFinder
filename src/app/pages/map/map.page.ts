@@ -268,7 +268,7 @@ export class MapPage implements OnInit {
 
     });
 
-    console.log(this.places);
+    // console.log(this.places);
 
   }
 

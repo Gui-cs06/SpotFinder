@@ -3,15 +3,11 @@
   <!-- Hero Image -->
   <div class="hero">
 
-    <img
-      [src]="place?.image"
-      [alt]="place?.name">
+    <img [src]="place?.image" [alt]="place?.name">
 
     <div class="top-actions">
 
-      <button
-        class="circle-btn"
-        (click)="goBack()">
+      <button class="circle-btn" (click)="goBack()">
 
         <ion-icon name="arrow-back-outline"></ion-icon>
 
@@ -25,9 +21,19 @@
 
         </button>
 
-        <button class="circle-btn">
+        <button class="circle-btn" (click)="toggleFavorite()">
 
-          <ion-icon name="heart-outline"></ion-icon>
+          @if (isFavorite) {
+
+          <ion-icon class="favorite" name="heart">
+          </ion-icon>
+
+          } @else {
+
+          <ion-icon class="favorite" name="heart-outline">
+          </ion-icon>
+
+          }
 
         </button>
 
@@ -57,8 +63,7 @@
     <!-- Avaliação -->
     <div class="rating">
 
-      <ion-icon
-        name="star">
+      <ion-icon name="star">
       </ion-icon>
 
       <span class="score">
@@ -130,8 +135,7 @@
 
         </p>
 
-        <button
-          (click)="openDirections()">
+        <button (click)="openDirections()">
 
           Ver direções
 
@@ -154,8 +158,7 @@
 
         </p>
 
-        <button
-          (click)="callPlace()">
+        <button (click)="callPlace()">
 
           Ligar agora
 
@@ -170,9 +173,7 @@
 
       <h2>Avaliações</h2>
 
-      <div
-        class="review-card"
-        *ngFor="let review of reviews">
+      <div class="review-card" *ngFor="let review of reviews">
 
         <div class="review-header">
 
@@ -204,8 +205,7 @@
 
           <div class="review-score">
 
-            <ion-icon
-              name="star">
+            <ion-icon name="star">
             </ion-icon>
 
             {{ review.rating }}
@@ -231,9 +231,7 @@
 <!-- Botões fixos -->
 <div class="bottom-actions">
 
-  <button
-    class="primary-btn"
-    (click)="openDirections()">
+  <button class="primary-btn" (click)="openDirections()">
 
     <ion-icon name="navigate-outline"></ion-icon>
 
@@ -241,9 +239,7 @@
 
   </button>
 
-  <button
-    class="secondary-btn"
-    (click)="callPlace()">
+  <button class="secondary-btn" (click)="callPlace()">
 
     <ion-icon name="call-outline"></ion-icon>
 

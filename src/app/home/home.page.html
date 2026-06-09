@@ -47,10 +47,9 @@
     <div class="categories">
 
       @for (category of categories; track category) {
-        <button (click)="selectCategory(category)"
-          [class.active]="selectedCategory() === category">
-          {{ category }}
-        </button>
+      <button (click)="selectCategory(category)" [class.active]="selectedCategory() === category">
+        {{ category }}
+      </button>
       }
 
     </div>
@@ -66,9 +65,9 @@
 
         <span>
           @if (isLoading) {
-            Carregando...
+          Carregando...
           } @else {
-            {{ filteredPlaces.length }} encontrados
+          {{ filteredPlaces.length }} encontrados
           }
         </span>
 
@@ -76,46 +75,46 @@
 
 
       @for (place of filteredPlaces; track place) {
-        <div class="place-card" (click)="openPlace(place)">
-          <div class="image-container">
-            <img [src]="place.image">
-            <button class="favorite-button" (click)="toggleFavorite(place.id); $event.stopPropagation()">
-              <ion-icon [name]="place.favorite ? 'heart' : 'heart-outline'">
-              </ion-icon>
-            </button>
-            <div class="category-badge">
-              {{ place.category }}
-            </div>
+      <div class="place-card" (click)="openPlace(place)">
+        <div class="image-container">
+          <img [src]="place.image">
+          <button class="favorite-button" (click)="toggleFavorite(place, $event)">
+            <ion-icon [name]="place.favorite ? 'heart' : 'heart-outline'">
+            </ion-icon>
+          </button>
+          <div class="category-badge">
+            {{ place.category }}
           </div>
-          <div class="place-info">
-            <h3>
-              {{ place.name }}
-            </h3>
-            <div class="info-row">
-              <div class="rating">
-                <ion-icon name="star"></ion-icon>
-                <span>
-                  {{ place.rating }}
-                </span>
-                <small>
-                  ({{ place.reviews }})
-                </small>
-              </div>
-              <div class="distance">
-                <ion-icon name="location-outline"></ion-icon>
-                <span>
-                  {{ place.distance }}
-                </span>
-              </div>
-            </div>
-            <div class="open-time">
-              <ion-icon name="time-outline"></ion-icon>
+        </div>
+        <div class="place-info">
+          <h3>
+            {{ place.name }}
+          </h3>
+          <div class="info-row">
+            <div class="rating">
+              <ion-icon name="star"></ion-icon>
               <span>
-                Aberto até {{ place.openUntil }}
+                {{ place.rating }}
+              </span>
+              <small>
+                ({{ place.reviews }})
+              </small>
+            </div>
+            <div class="distance">
+              <ion-icon name="location-outline"></ion-icon>
+              <span>
+                {{ place.distance }}
               </span>
             </div>
           </div>
+          <div class="open-time">
+            <ion-icon name="time-outline"></ion-icon>
+            <span>
+              Aberto até {{ place.openUntil }}
+            </span>
+          </div>
         </div>
+      </div>
       }
 
     </div>

@@ -1,0 +1,130 @@
+<ion-content fullscreen>
+
+  <div class="favorites-page">
+
+    <!-- Header -->
+    <div class="header">
+
+      <div class="header-top">
+
+        <div>
+
+          <h1>Favoritos</h1>
+
+          <p>
+            {{ favorites.length }} lugares salvos
+          </p>
+
+        </div>
+
+        <div class="heart-circle">
+
+          <ion-icon name="heart"></ion-icon>
+
+        </div>
+
+      </div>
+
+      <!-- Busca -->
+      <div class="search-bar">
+
+        <ion-icon name="search-outline"></ion-icon>
+
+        <input
+          type="text"
+          placeholder="Buscar favoritos..."
+          [(ngModel)]="searchText">
+
+      </div>
+
+    </div>
+
+    <!-- Conteúdo -->
+    <div class="content">
+
+      @if(filteredFavorites.length > 0) {
+
+        <div class="section-title">
+
+          Sua Coleção
+
+        </div>
+
+        <div class="places-list">
+
+          <div
+            class="place-card"
+            *ngFor="let place of filteredFavorites"
+            (click)="openPlace(place)">
+
+            <img
+              [src]="place.image"
+              [alt]="place.name">
+
+            <div class="place-info">
+
+              <h3>
+
+                {{ place.name }}
+
+              </h3>
+
+              <p>
+
+                {{ place.category }}
+
+              </p>
+
+              <span>
+
+                {{ place.distance }}
+
+              </span>
+
+            </div>
+
+            <button
+              class="favorite-btn"
+              (click)="removeFavorite(place, $event)">
+
+              <ion-icon name="heart"></ion-icon>
+
+            </button>
+
+          </div>
+
+        </div>
+
+      } @else {
+
+        <div class="empty-state">
+
+          <div class="empty-icon">
+
+            <ion-icon name="heart"></ion-icon>
+
+          </div>
+
+          <h3>
+
+            Nenhum favorito ainda
+
+          </h3>
+
+          <p>
+
+            Comece a explorar e salve seus lugares favoritos para vê-los aqui.
+
+          </p>
+
+        </div>
+
+      }
+
+    </div>
+
+  </div>
+
+    <app-bottom-nav></app-bottom-nav>
+
+</ion-content>

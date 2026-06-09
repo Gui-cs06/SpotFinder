@@ -1,6 +1,8 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, ChangeDetectorRef } from '@angular/core';
 
 import { BottomNavComponent } from '../components/bottom-nav/bottom-nav.component';
+
+import { FavoriteService } from '../services/favorite.service';
 
 import {
   IonContent,
@@ -34,6 +36,9 @@ interface Place {
   distance: string;
   openUntil: string;
   favorite: boolean;
+
+  latitude?: number;
+  longitude?: number;
 }
 
 @Component({
@@ -71,7 +76,9 @@ export class HomePage implements OnInit {
   isLoading = true;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private favoriteService: FavoriteService,
+    private cdr: ChangeDetectorRef
   ) {
 
     addIcons({
@@ -162,17 +169,23 @@ export class HomePage implements OnInit {
       const data =
         await response.json();
 
-      this.places =
-        data.features.map((feature: any) => {
+      this.places = await Promise.all(
+
+        data.features.map(async (feature: any) => {
 
           const properties =
             feature.properties;
 
+          const placeId =
+            properties.place_id ||
+            properties.datasource?.raw?.osm_id?.toString();
+
+          const isFavorite =
+            await this.favoriteService.isFavorite(placeId);
+
           return {
 
-            id:
-              properties.place_id ||
-              properties.datasource?.raw?.osm_id?.toString(),
+            id: placeId,
 
             name:
               properties.name ||
@@ -202,11 +215,20 @@ export class HomePage implements OnInit {
                 properties
               ),
 
-            favorite: false
+            latitude:
+              properties.lat,
+
+            longitude:
+              properties.lon,
+
+            favorite:
+              isFavorite
 
           };
 
-        });
+        })
+
+      );
 
     } catch (error) {
 
@@ -222,6 +244,8 @@ export class HomePage implements OnInit {
     } finally {
 
       this.isLoading = false;
+
+      this.cdr.detectChanges();
 
     }
 
@@ -247,22 +271,54 @@ export class HomePage implements OnInit {
 
   }
 
-  toggleFavorite(id: string) {
+  async ionViewWillEnter() {
 
-    this.places = this.places.map(place => {
+    const favorites =
+      await this.favoriteService.getFavorites();
 
-      if (place.id === id) {
+    const favoriteIds =
+      favorites.map(
+        favorite => favorite.id
+      );
 
-        return {
-          ...place,
-          favorite: !place.favorite
-        };
+    this.places =
+      this.places.map(place => ({
 
-      }
+        ...place,
 
-      return place;
+        favorite:
+          favoriteIds.includes(place.id)
 
-    });
+      }));
+
+    this.cdr.detectChanges();
+
+  }
+
+  async toggleFavorite(
+    place: Place,
+    event: Event
+  ) {
+
+    event.stopPropagation();
+
+    if (place.favorite) {
+
+      await this.favoriteService
+        .removeFavorite(place.id);
+
+    } else {
+
+      await this.favoriteService
+        .addFavorite(place);
+
+    }
+
+    place.favorite =
+      await this.favoriteService
+        .isFavorite(place.id);
+
+    this.cdr.detectChanges();
 
   }
 

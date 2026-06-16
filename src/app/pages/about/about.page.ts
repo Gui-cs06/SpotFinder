@@ -28,7 +28,7 @@ import { Router } from '@angular/router';
   imports: [
     IonContent,
     IonIcon
-]
+  ]
 })
 export class AboutPage {
 
@@ -36,20 +36,22 @@ export class AboutPage {
     {
       name: 'Gui Cabral',
       role: 'Desenvolvedor Frontend',
-      avatar: 'GC',
+      photo: '../../../assets/team/gui.jpg',
+
       description: 'Responsável pela interface e experiência do usuário.',
-  
+
       github: 'https://github.com/Gui-cs06',
       linkedin: 'https://linkedin.com/in/seuLinkedin',
       email: 'mailto:csgui151006@gmail.com'
     },
-  
+
     {
       name: 'Renan Domingues',
       role: 'Desenvolvedor Backend',
-      avatar: 'RD',
+      photo: '../../../assets/team/renan.png',
+
       description: 'Responsável pela lógica e integração do sistema.',
-  
+
       github: 'https://github.com/RenanDevDomingues',
       linkedin: 'https://linkedin.com/in/',
       email: 'mailto:renandominguesdev@gmail.com'

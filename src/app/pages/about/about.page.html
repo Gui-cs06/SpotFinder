@@ -31,40 +31,42 @@
       <div class="section-title">Nossa Equipe</div>
 
       @for (developer of developers; track developer) {
-        <div class="developer-card">
-          <div class="developer-header">
-            <div class="avatar">{{ developer.avatar }}</div>
-            <div class="developer-info">
-              <h3>{{ developer.name }}</h3>
-              <span class="role"> {{ developer.role }} </span>
-              <p>{{ developer.description }}</p>
-            </div>
+      <div class="developer-card">
+        <div class="developer-header">
+          <div class="avatar">
+            <img [src]="developer.photo" [alt]="developer.name">
           </div>
-          <div class="social-buttons">
-            <a [href]="developer.github" target="_blank">
-              <ion-icon name="logo-github"></ion-icon>
-              GitHub
-            </a>
-            <a [href]="developer.linkedin" target="_blank">
-              <ion-icon name="logo-linkedin"></ion-icon>
-              LinkedIn
-            </a>
-            <a [href]="developer.email">
-              <ion-icon name="mail-outline"></ion-icon>
-              E-mail
-            </a>
+          <div class="developer-info">
+            <h3>{{ developer.name }}</h3>
+            <span class="role"> {{ developer.role }} </span>
+            <p>{{ developer.description }}</p>
           </div>
         </div>
+        <div class="social-buttons">
+          <a [href]="developer.github" target="_blank">
+            <ion-icon name="logo-github"></ion-icon>
+            GitHub
+          </a>
+          <a [href]="developer.linkedin" target="_blank">
+            <ion-icon name="logo-linkedin"></ion-icon>
+            LinkedIn
+          </a>
+          <a [href]="developer.email">
+            <ion-icon name="mail-outline"></ion-icon>
+            E-mail
+          </a>
+        </div>
+      </div>
       }
 
       <div class="section-title">Tecnologias Utilizadas</div>
 
       <div class="tech-grid">
         @for (tech of technologies; track tech) {
-          <div class="tech-card">
-            <h3>{{ tech.name }}</h3>
-            <p>{{ tech.type }}</p>
-          </div>
+        <div class="tech-card">
+          <h3>{{ tech.name }}</h3>
+          <p>{{ tech.type }}</p>
+        </div>
         }
       </div>
 

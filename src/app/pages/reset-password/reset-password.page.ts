@@ -17,7 +17,8 @@ import {
   eyeOutline,
   eyeOffOutline,
   lockClosedOutline,
-  locationOutline
+  locationOutline,
+  arrowBackOutline
 } from 'ionicons/icons';
 
 import { addIcons } from 'ionicons';
@@ -61,7 +62,8 @@ export class ResetPasswordPage {
       eyeOutline,
       eyeOffOutline,
       lockClosedOutline,
-      locationOutline
+      locationOutline,
+      arrowBackOutline
     });
 
   }
@@ -128,6 +130,10 @@ export class ResetPasswordPage {
 
     }
 
+  }
+
+  goBack() {
+    this.router.navigate(['/profile']);
   }
 
 }

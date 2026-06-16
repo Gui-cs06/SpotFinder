@@ -16,7 +16,8 @@ import {
 import {
   personOutline,
   mailOutline,
-  locationOutline
+  locationOutline,
+  arrowBackOutline
 } from 'ionicons/icons';
 
 import { addIcons } from 'ionicons';
@@ -53,7 +54,8 @@ export class ProfileUpdatePage implements OnInit {
     addIcons({
       personOutline,
       mailOutline,
-      locationOutline
+      locationOutline,
+      arrowBackOutline
     });
 
   }
@@ -122,6 +124,10 @@ export class ProfileUpdatePage implements OnInit {
 
     }
 
+  }
+
+  goBack() {
+    this.router.navigate(['/profile']);
   }
 
 }
